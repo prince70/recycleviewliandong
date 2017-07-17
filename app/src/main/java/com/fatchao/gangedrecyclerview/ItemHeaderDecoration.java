@@ -8,7 +8,6 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +24,7 @@ public class ItemHeaderDecoration extends RecyclerView.ItemDecoration {
     private int mTitleHeight;
     private CheckListener mCheckListener;
     private String currentTag = "0";
+
 
     void setCheckListener(CheckListener checkListener) {
         mCheckListener = checkListener;
@@ -110,13 +110,7 @@ public class ItemHeaderDecoration extends RecyclerView.ItemDecoration {
         topTitleView.draw(c);//Canvas默认在视图顶部，无需平移，直接绘制
         if (flag)
             c.restore();//恢复画布到之前保存的状态
-
-        if (MainActivity.left) {
-            MainActivity.left = false;
-            return;
-        }
         if (!Objects.equals(tag, currentTag)) {
-            Log.d("tag---->", String.valueOf(MainActivity.finalNumber));
             currentTag = tag;
             Integer integer = Integer.valueOf(currentTag);
             mCheckListener.check(integer, false);

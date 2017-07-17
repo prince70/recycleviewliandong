@@ -8,6 +8,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,9 +18,9 @@ public class MainActivity extends AppCompatActivity implements CheckListener {
     private SortAdapter mSortAdapter;
     private SortDetailFragment mSortDetailFragment;
     private Context mContext;
-    public static boolean left;
-    public static int finalNumber = 0;
-
+    private int targetPosition;//点击左边某一个具体的item的位置
+    private boolean isScrolled;//左边点击之后，右边会开始滑动，右边的滑动会影响左边，此标志用来屏蔽左边的连续滑动
+    private LinearLayoutManager mLinearLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,8 @@ public class MainActivity extends AppCompatActivity implements CheckListener {
             @Override
             public void onItemClick(int id, int position) {
                 if (mSortDetailFragment != null) {
+                    targetPosition = position;
+                    isScrolled = true;
                     setChecked(position, true);
                 }
             }
@@ -59,31 +62,51 @@ public class MainActivity extends AppCompatActivity implements CheckListener {
     }
 
     private void setChecked(int position, boolean isLeft) {
-        finalNumber = position;
-        left = isLeft;
-        Log.d("boolean---->", String.valueOf(left));
-        mSortAdapter.setCheckedPosition(position);
+
         if (isLeft) {
+            mSortAdapter.setCheckedPosition(position);
+            //此处的位置需要根据每个分类的集合来进行计算
+            Log.d("pos---->", String.valueOf(position));
             mSortDetailFragment.setData(position * 10 + position);
+            moveToCenter(position);
+
+        } else {
+            if (targetPosition == position) {
+                isScrolled = false;
+            }
+            if (!isScrolled) {
+                mSortAdapter.setCheckedPosition(position);
+                moveToCenter(position);
+            }
+
         }
 
+
+    }
+
+    //将当前选中的item居中
+    private void moveToCenter(int position) {
+        //将点击的position转换为当前屏幕上可见的item的位置以便于计算距离顶部的高度，从而进行移动居中
+        View childAt = rvSort.getChildAt(position - mLinearLayoutManager.findFirstVisibleItemPosition());
+        int y = (childAt.getTop() - rvSort.getHeight() / 2);
+        rvSort.smoothScrollBy(0, y);
+        Log.d("y---->", String.valueOf(y));
     }
 
 
     private void initView() {
         rvSort = (RecyclerView) findViewById(R.id.rv_sort);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
-        rvSort.setLayoutManager(linearLayoutManager);
+        mLinearLayoutManager = new LinearLayoutManager(mContext);
+        rvSort.setLayoutManager(mLinearLayoutManager);
         DividerItemDecoration decoration = new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL);
         rvSort.addItemDecoration(decoration);
 
     }
 
+
     @Override
-    public void check(int position, boolean isChecked) {
-        setChecked(position, isChecked);
+    public void check(int position, boolean isScroll) {
+        setChecked(position, isScroll);
 
     }
-
-
 }

@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -113,24 +112,26 @@ public class SortDetailFragment extends BaseFragment<SortDetailPresenter, String
     }
 
     public void setData(int n) {
-        if (n < 0 || n >= mAdapter.getItemCount()) {
-            Toast.makeText(mContext, "超出范围了", Toast.LENGTH_SHORT).show();
-            return;
-        }
         mIndex = n;
         mRv.stopScroll();
         smoothMoveToPosition(n);
     }
+
     public void setListener(CheckListener listener) {
         this.checkListener = listener;
     }
+
     private void smoothMoveToPosition(int n) {
         int firstItem = mManager.findFirstVisibleItemPosition();
         int lastItem = mManager.findLastVisibleItemPosition();
+        Log.d("first--->", String.valueOf(firstItem));
+        Log.d("last--->", String.valueOf(lastItem));
         if (n <= firstItem) {
             mRv.smoothScrollToPosition(n);
         } else if (n <= lastItem) {
+            Log.d("pos---->", String.valueOf(n)+"VS"+firstItem);
             int top = mRv.getChildAt(n - firstItem).getTop();
+            Log.d("top---->", String.valueOf(top));
             mRv.smoothScrollBy(0, top);
         } else {
             mRv.smoothScrollToPosition(n);
@@ -139,7 +140,11 @@ public class SortDetailFragment extends BaseFragment<SortDetailPresenter, String
     }
 
 
+    @Override
+    public void check(int position, boolean isScroll) {
+        checkListener.check(position, isScroll);
 
+    }
 
 
     private class RecyclerViewListener extends RecyclerView.OnScrollListener {
@@ -163,9 +168,6 @@ public class SortDetailFragment extends BaseFragment<SortDetailPresenter, String
             super.onScrolled(recyclerView, dx, dy);
         }
     }
-    @Override
-    public void check(int position, boolean isScroll) {
-        checkListener.check(position, isScroll);
 
-    }
+
 }
