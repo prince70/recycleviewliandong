@@ -8,6 +8,7 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +16,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.List;
-import java.util.Objects;
 
 
 public class ItemHeaderDecoration extends RecyclerView.ItemDecoration {
@@ -23,8 +23,8 @@ public class ItemHeaderDecoration extends RecyclerView.ItemDecoration {
     private LayoutInflater mInflater;
     private int mTitleHeight;
     private CheckListener mCheckListener;
-    private String currentTag = "0";
 
+    public static String currentTag = "0";
 
     void setCheckListener(CheckListener checkListener) {
         mCheckListener = checkListener;
@@ -45,6 +45,10 @@ public class ItemHeaderDecoration extends RecyclerView.ItemDecoration {
     public ItemHeaderDecoration setData(List<SortBean> mDatas) {
         this.mDatas = mDatas;
         return this;
+    }
+
+    public static void setCurrentTag(String currentTag) {
+        ItemHeaderDecoration.currentTag = currentTag;
     }
 
     @Override
@@ -110,7 +114,7 @@ public class ItemHeaderDecoration extends RecyclerView.ItemDecoration {
         topTitleView.draw(c);//Canvas默认在视图顶部，无需平移，直接绘制
         if (flag)
             c.restore();//恢复画布到之前保存的状态
-        if (!Objects.equals(tag, currentTag)) {
+        if (!TextUtils.equals(tag, currentTag)) {
             currentTag = tag;
             Integer integer = Integer.valueOf(currentTag);
             mCheckListener.check(integer, false);

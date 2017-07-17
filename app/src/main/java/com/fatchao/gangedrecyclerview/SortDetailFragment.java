@@ -127,14 +127,14 @@ public class SortDetailFragment extends BaseFragment<SortDetailPresenter, String
         Log.d("first--->", String.valueOf(firstItem));
         Log.d("last--->", String.valueOf(lastItem));
         if (n <= firstItem) {
-            mRv.smoothScrollToPosition(n);
+            mRv.scrollToPosition(n);
         } else if (n <= lastItem) {
             Log.d("pos---->", String.valueOf(n)+"VS"+firstItem);
             int top = mRv.getChildAt(n - firstItem).getTop();
             Log.d("top---->", String.valueOf(top));
-            mRv.smoothScrollBy(0, top);
+            mRv.scrollBy(0, top);
         } else {
-            mRv.smoothScrollToPosition(n);
+            mRv.scrollToPosition(n);
             move = true;
         }
     }
@@ -166,6 +166,14 @@ public class SortDetailFragment extends BaseFragment<SortDetailPresenter, String
         @Override
         public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
             super.onScrolled(recyclerView, dx, dy);
+            if (move ){
+                move = false;
+                int n = mIndex - mManager.findFirstVisibleItemPosition();
+                if ( 0 <= n && n < mRv.getChildCount()){
+                    int top = mRv.getChildAt(n).getTop();
+                    mRv.scrollBy(0, top);
+                }
+            }
         }
     }
 
