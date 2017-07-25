@@ -11,4 +11,4 @@
 4. 右侧联动左侧：
 滚动右侧列表，监听滚动的位置，左侧列表需要同步选中相应的列表
 
-![列表联动效果图](http://orbm62bsw.bkt.clouddn.com/%E5%88%97%E8%A1%A8%E8%81%94%E5%8A%A8%E7%9A%84%E6%95%88%E6%9E%9C%E5%9B%BE.gif)
+![列表联动效果图](http://orbm62bsw.bkt.clouddn.com/%E5%88%97%E8%A1%A8%E8%81%94%E5%8A%A8.gif)
