@@ -22,8 +22,8 @@ public class MainActivity extends AppCompatActivity implements CheckListener {
     private SortAdapter mSortAdapter;
     private SortDetailFragment mSortDetailFragment;
     private Context mContext;
-    private int targetPosition;//点击左边某一个具体的item的位置
     private LinearLayoutManager mLinearLayoutManager;
+    private int targetPosition;//点击左边某一个具体的item的位置
     private boolean isMoved;
     private SortBean mSortBean;
 
@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements CheckListener {
         createFragment();
     }
 
+    //从资源文件中获取分类json
     private String getAssetsData(String path) {
         String result = "";
         try {
@@ -111,12 +112,13 @@ public class MainActivity extends AppCompatActivity implements CheckListener {
             }
             count += position;
             mSortDetailFragment.setData(count);
+            ItemHeaderDecoration.setCurrentTag(String.valueOf(targetPosition));//凡是点击左边，将左边点击的位置作为当前的tag
         } else {
             if (isMoved) {
                 isMoved = false;
             } else
                 mSortAdapter.setCheckedPosition(position);
-            ItemHeaderDecoration.setCurrentTag(String.valueOf(targetPosition));
+            ItemHeaderDecoration.setCurrentTag(String.valueOf(position));//如果是滑动右边联动左边，则按照右边传过来的位置作为tag
 
         }
         moveToCenter(position);

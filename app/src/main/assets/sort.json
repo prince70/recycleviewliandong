@@ -130,27 +130,8 @@
           "name": "神经系统用药",
           "imgsrc": "https://121.10.217.171:9002/_ui/desktop/common/cmyy/image/app_18_18144.png",
           "cacode": "18144"
-        },
-        {
-          "name": "抗微生物药",
-          "imgsrc": "https://121.10.217.171:9002/_ui/desktop/common/cmyy/image/app_18_18138.png",
-          "cacode": "18138"
-        },
-        {
-          "name": "抗肿瘤/免疫调节药",
-          "imgsrc": "https://121.10.217.171:9002/_ui/desktop/common/cmyy/image/app_18_18139.png",
-          "cacode": "18139"
-        },
-        {
-          "name": "调节水、电解质及酸碱平衡药",
-          "imgsrc": "https://121.10.217.171:9002/_ui/desktop/common/cmyy/image/app_18_18145.png",
-          "cacode": "18145"
-        },
-        {
-          "name": "维生素矿物质药",
-          "imgsrc": "https://121.10.217.171:9002/_ui/desktop/common/cmyy/image/app_18_18146.png",
-          "cacode": "18146"
         }
+
 
       ],
       "name": "中成药",
@@ -253,17 +234,8 @@
           "name": "血液系统用药",
           "imgsrc": "https://121.10.217.171:9002/_ui/desktop/common/cmyy/image/app_19_19150.png",
           "cacode": "19150"
-        },
-        {
-          "name": "抗肿瘤/免疫调节药",
-          "imgsrc": "https://121.10.217.171:9002/_ui/desktop/common/cmyy/image/app_19_19139.png",
-          "cacode": "19139"
-        },
-        {
-          "name": "清热药",
-          "imgsrc": "https://121.10.217.171:9002/_ui/desktop/common/cmyy/image/app_19_19143.png",
-          "cacode": "19143"
         }
+
       ],
       "name": "西药",
       "imgsrc": "https://121.10.217.171:9002/_ui/desktop/common/cmyy/image/app_3.png",
@@ -404,11 +376,6 @@
           "name": "卫生用品类消毒产品",
           "imgsrc": "https://121.10.217.171:9002/_ui/desktop/common/cmyy/image/app_16_16122.png",
           "cacode": "16122"
-        },
-        {
-          "name": "其他功能消毒用品",
-          "imgsrc": "https://121.10.217.171:9002/_ui/desktop/common/cmyy/image/app_16_16121.png",
-          "cacode": "16121"
         }
       ],
       "name": "消毒品",

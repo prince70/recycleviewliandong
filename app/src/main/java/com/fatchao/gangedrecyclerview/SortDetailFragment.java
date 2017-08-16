@@ -21,10 +21,6 @@ public class SortDetailFragment extends BaseFragment<SortDetailPresenter, String
     private int mIndex = 0;
     private CheckListener checkListener;
 
-    @Override
-    protected void getData() {
-
-    }
 
     @Override
     protected int getLayoutId() {
@@ -124,6 +120,11 @@ public class SortDetailFragment extends BaseFragment<SortDetailPresenter, String
         mIndex = n;
         mRv.stopScroll();
         smoothMoveToPosition(n);
+    }
+
+    @Override
+    protected void getData() {
+
     }
 
     public void setListener(CheckListener listener) {

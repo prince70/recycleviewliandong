@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
 import java.util.List;
 
 
@@ -59,7 +58,6 @@ public class ClassifyDetailAdapter extends RvAdapter<RightBean> {
                     break;
                 case 1:
                     tvCity.setText(sortBean.getName());
-//                    avatar.setImageResource(R.mipmap.ic_launcher);
                     break;
             }
 

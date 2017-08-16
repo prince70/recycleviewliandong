@@ -22,7 +22,7 @@ public class ItemHeaderDecoration extends RecyclerView.ItemDecoration {
     private List<RightBean> mDatas;
     private LayoutInflater mInflater;
     private CheckListener mCheckListener;
-    public static String currentTag = "-1";//标记当前左侧选中的position，因为有可能选中的item，右侧不能置顶，所以强制替换掉当前的tag
+    public static String currentTag = "0";//标记当前左侧选中的position，因为有可能选中的item，右侧不能置顶，所以强制替换掉当前的tag
 
     void setCheckListener(CheckListener checkListener) {
         mCheckListener = checkListener;
@@ -55,54 +55,38 @@ public class ItemHeaderDecoration extends RecyclerView.ItemDecoration {
         GridLayoutManager.SpanSizeLookup spanSizeLookup = manager.getSpanSizeLookup();
         int pos = ((LinearLayoutManager) (parent.getLayoutManager())).findFirstVisibleItemPosition();
         int spanSize = spanSizeLookup.getSpanSize(pos);
-        if (spanSize == 1) {
-            //body
-            Log.d("pos--->", String.valueOf(pos));
-            String tag = mDatas.get(pos).getTag();
-            View child = parent.findViewHolderForLayoutPosition(pos).itemView;
-            boolean flag = false;
-            String mSuspensionTag = "";
-            //判断最后一行的个数
-            if (!TextUtils.equals(mDatas.get(pos).getTag(), mDatas.get(pos + 1).getTag())
-                    ) {
-                //最后一行只有一个item
-                tag = mDatas.get(pos).getTag();
-                mSuspensionTag = mDatas.get(pos + 1).getTag();
+        Log.d("pos--->", String.valueOf(pos));
+        String tag = mDatas.get(pos).getTag();
+        View child = parent.findViewHolderForLayoutPosition(pos).itemView;
+        boolean isTranslate = false;//canvas是否平移的标志
+        if (!TextUtils.equals(mDatas.get(pos).getTag(), mDatas.get(pos + 1).getTag())
+                || !TextUtils.equals(mDatas.get(pos).getTag(), mDatas.get(pos + 2).getTag())
+                || !TextUtils.equals(mDatas.get(pos).getTag(), mDatas.get(pos + 3).getTag())
+                ) {
+            tag = mDatas.get(pos).getTag();
+            int i = child.getHeight() + child.getTop();
+            Log.d("i---->", String.valueOf(i));
+            if (spanSize == 1) {
+                //body 才平移
                 if (child.getHeight() + child.getTop() < mTitleHeight) {
                     canvas.save();
-                    flag = true;
-                    canvas.translate(0, child.getHeight() + child.getTop() - mTitleHeight);
-                }
-            } else if (!TextUtils.equals(mDatas.get(pos).getTag(), mDatas.get(pos + 2).getTag())) {
-                //最后一行有两个item
-                tag = mDatas.get(pos).getTag();
-                mSuspensionTag = mDatas.get(pos + 2).getTag();
-                if (child.getHeight() + child.getTop() < mTitleHeight) {
-                    canvas.save();
-                    flag = true;
-                    canvas.translate(0, child.getHeight() + child.getTop() - mTitleHeight);
-                }
-            } else if (!TextUtils.equals(mDatas.get(pos).getTag(), mDatas.get(pos + 3).getTag())) {
-                //最后一行有3个item
-                tag = mDatas.get(pos).getTag();
-                mSuspensionTag = mDatas.get(pos + 3).getTag();
-                if (child.getHeight() + child.getTop() < mTitleHeight) {
-                    canvas.save();
-                    flag = true;
-                    canvas.translate(0, child.getHeight() + child.getTop() - mTitleHeight);
+                    isTranslate = true;
+                    int height = child.getHeight() + child.getTop() - mTitleHeight;
+                    canvas.translate(0, height);
                 }
             }
 
-            drawHeader(parent, pos, canvas);
-            if (flag)
-                canvas.restore();
 
-            Log.d("check----->", tag + "VS" + currentTag);
-            if (!TextUtils.equals(tag, currentTag)) {
-                currentTag = tag;
-                Integer integer = Integer.valueOf(currentTag);
-                mCheckListener.check(integer, false);
-            }
+        }
+        drawHeader(parent, pos, canvas);
+        if (isTranslate) {
+            canvas.restore();
+        }
+        Log.d("tag--->", tag + "VS" + currentTag);
+        if (!TextUtils.equals(tag, currentTag)) {
+            currentTag = tag;
+            Integer integer = Integer.valueOf(tag);
+            mCheckListener.check(integer, false);
         }
     }
 
