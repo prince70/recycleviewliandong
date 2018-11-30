@@ -1,7 +1,9 @@
-package com.fatchao.gangedrecyclerview;
+package com.niwj.gangedrecyclerview;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import com.niwj.gangedrecyclerview.callback.RvListener;
 
 
 public abstract class RvHolder<T> extends RecyclerView.ViewHolder {

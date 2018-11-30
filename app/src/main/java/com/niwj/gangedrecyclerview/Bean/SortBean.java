@@ -1,4 +1,4 @@
-package com.fatchao.gangedrecyclerview;
+package com.niwj.gangedrecyclerview.Bean;
 
 
 import android.os.Parcel;

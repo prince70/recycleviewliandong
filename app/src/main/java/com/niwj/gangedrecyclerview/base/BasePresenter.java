@@ -1,4 +1,6 @@
-package com.fatchao.gangedrecyclerview;
+package com.niwj.gangedrecyclerview.base;
+
+import com.niwj.gangedrecyclerview.callback.ViewCallBack;
 
 public abstract class BasePresenter {
 

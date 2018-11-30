@@ -1,4 +1,4 @@
-package com.fatchao.gangedrecyclerview;
+package com.niwj.gangedrecyclerview;
 
 import android.content.Context;
 import android.text.TextUtils;
@@ -11,7 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
-/**
+/**灵活布局
  * author pangchao
  * created on 2017/5/20
  * email fat_chao@163.com.

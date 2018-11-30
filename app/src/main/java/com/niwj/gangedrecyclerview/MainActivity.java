@@ -1,4 +1,4 @@
-package com.fatchao.gangedrecyclerview;
+package com.niwj.gangedrecyclerview;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,6 +11,10 @@ import android.util.Log;
 import android.view.View;
 
 import com.google.gson.Gson;
+import com.niwj.gangedrecyclerview.Bean.SortBean;
+import com.niwj.gangedrecyclerview.adapter.SortAdapter;
+import com.niwj.gangedrecyclerview.callback.CheckListener;
+import com.niwj.gangedrecyclerview.callback.RvListener;
 
 import java.io.IOException;
 import java.io.InputStream;

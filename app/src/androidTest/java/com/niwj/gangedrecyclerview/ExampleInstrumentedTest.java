@@ -1,4 +1,4 @@
-package com.fatchao.gangedrecyclerview;
+package com.niwj.gangedrecyclerview;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

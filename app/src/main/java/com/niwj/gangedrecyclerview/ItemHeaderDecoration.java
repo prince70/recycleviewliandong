@@ -1,4 +1,4 @@
-package com.fatchao.gangedrecyclerview;
+package com.niwj.gangedrecyclerview;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -13,6 +13,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.niwj.gangedrecyclerview.Bean.RightBean;
+import com.niwj.gangedrecyclerview.callback.CheckListener;
 
 import java.util.List;
 

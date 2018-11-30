@@ -1,10 +1,13 @@
-package com.fatchao.gangedrecyclerview;
+package com.niwj.gangedrecyclerview.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.niwj.gangedrecyclerview.RvHolder;
+import com.niwj.gangedrecyclerview.callback.RvListener;
 
 import java.util.List;
 

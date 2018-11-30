@@ -1,10 +1,14 @@
-package com.fatchao.gangedrecyclerview;
+package com.niwj.gangedrecyclerview.adapter;
 
 
 import android.content.Context;
 import android.graphics.Color;
 import android.view.View;
 import android.widget.TextView;
+
+import com.niwj.gangedrecyclerview.R;
+import com.niwj.gangedrecyclerview.RvHolder;
+import com.niwj.gangedrecyclerview.callback.RvListener;
 
 import java.util.List;
 

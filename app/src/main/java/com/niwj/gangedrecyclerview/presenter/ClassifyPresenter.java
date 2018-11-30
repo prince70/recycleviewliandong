@@ -1,4 +1,6 @@
-package com.fatchao.gangedrecyclerview;
+package com.niwj.gangedrecyclerview.presenter;
+
+import com.niwj.gangedrecyclerview.base.BasePresenter;
 
 /**
  * author pangchao

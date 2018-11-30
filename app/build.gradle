@@ -4,7 +4,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.3"
     defaultConfig {
-        applicationId "com.fatchao.gangedrecyclerview"
+        applicationId "com.niwj.gangedrecyclerview"
         minSdkVersion 16
         targetSdkVersion 23
         versionCode 1

@@ -1,4 +1,4 @@
-package com.fatchao.gangedrecyclerview;
+package com.niwj.gangedrecyclerview;
 
 import android.graphics.Color;
 import android.support.design.widget.Snackbar;
@@ -7,6 +7,14 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
+import com.niwj.gangedrecyclerview.Bean.RightBean;
+import com.niwj.gangedrecyclerview.Bean.SortBean;
+import com.niwj.gangedrecyclerview.adapter.ClassifyDetailAdapter;
+import com.niwj.gangedrecyclerview.base.BaseFragment;
+import com.niwj.gangedrecyclerview.callback.CheckListener;
+import com.niwj.gangedrecyclerview.callback.RvListener;
+import com.niwj.gangedrecyclerview.presenter.SortDetailPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
